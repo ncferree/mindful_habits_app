@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#b4cab4"/>
+    <title>Mindful Habits</title>
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="/public/css/materialize.min.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/app.css">
+    <!-- Compiled and minified JavaScript -->
+    <script type="text/JavaScript" src="/public/js/materialize.min.js"></script>
+    <link rel="manifest" href="/public/manifest.json">
+    <link rel="apple-touch-icon" href="/public/img/lotus192x192 .png">
+            
+</head>
+<body>
+    <nav class="z-depth-0">
+        <div class="nav-wrapper container">
+            <a href="/" class="brand-logo left"><img src="/public/img/lotus.svg" height="50px"></a>
+                <span class="right grey-text text-darken-4">
+                    <i class="material-icons sidenav-trigger" data-target="side-menu">menu</i>
+                </span>
+        </div>
+    </nav>
+ 
+   <ul id="side-menu" class="sidenav side-menu">
+       <li><a class="subheader">Mindful Habits</a></li>
+       <li><a href="/public/index.html" class="waves-effect">Home</a></li>
+       <li><a href="/public/pages/dailyroutines.html">Daily Routines</a></li>
+       <li><a href="/public/pages/mymediations.html">My Meditations</a></li>
+       <li><a href="/public/pages/dailygratitude.html">Daily Gratitude</a></li>
+       <li><a href="/public/pages/myintentions.html">My Intentions</a></li>
+       <li><a href="/public/pages/myaffirmations.html">My Affirmations</a></li>
+       <li><a href="/public/pages/weeklyjournal.html">Weekly Journal Prompt</a></li>
+       <li><a href="/public/pages/about.html" class="waves-effect">About</a></li>
+       <li class="logged-in">
+           <a href="#!" class=" collapsible waves-effect modal-trigger" data-target="modal-account">Account</a>
+       </li>
+       <li class="logged-in">
+            <a href="#!" class="waves-effect" id="logout">Logout</a>
+       </li>
+       <li class="logged-out">
+            <a href="#!" class="waves-effect modal-trigger" data-target="modal-login">Login</a>
+       </li>
+       <li class="logged-out">
+            <a href="#!" class="waves-effect modal-trigger" data-target="modal-signup">Sign Up</a>
+       </li>
+       <li>
+           <div class="divider"></div>
+       </li>
+       <li><a href="/public/pages/contact.html" class="waves-effect"><i class="material-icons">mail_outline</i>Contact</a>
+       </li>
+   </ul>
+
+   <div>
+       <h1 class="center">MINDFUL HABITS</h1>
+   </div>
+   <div class="container collection">
+        <form class="collection-item">
+            <label class="collection-item">
+                <input type="checkbox" id="daily-routines" />
+                <span for=""><a href="/public/pages/dailyroutines.html" class="collection-item">Daily Routines</a></span>
+            </label>    
+        </form>
+        <form class="collection-item">
+            <label class="collection-item">
+                <input type="checkbox" id="daily-gratitude" />
+                <span for=""><a href="/public/pages/dailygratitude.html" class="collection-item">Daily Gratitude</a></span>
+            </label>    
+        </form>
+        <form class="collection-item">
+            <label class="collection-item">
+                <input type="checkbox" id="my-affirmations" />
+                <span for=""><a href="/public/pages/myaffirmations.html" class="collection-item">My Affirmations</a></span>
+            </label>    
+        </form>
+        <form class="collection-item">
+            <label class="collection-item">
+                <input type="checkbox" id="my-intentions"/>
+                <span for=""><a href="/public/pages/myintentions.html" class="collection-item">My Intentions</a></span>
+            </label>    
+        </form>
+        <form class="collection-item"> 
+            <label class="collection-item">
+                <input type="checkbox" id="my-meditations" />
+                <span for=""><a href="/public/pages/mymediations.html" class="collection-item">My Meditations</a></span>
+            </label>    
+        </form>
+        <form class="collection-item">
+            <label class="collection-item">
+                <input type="checkbox" id="journal" />
+                <span for=""><a href="/public/pages/weeklyjournal.html" class="collection-item">Weekly Journal Prompt</a></span>
+            </label>    
+        </form>
+    </div>
+
+
+   <div class="dailyAffirmations container grey-text text-darken-4"></div>
+   <!-- dailyAffirmations display here -->
+        
+
+
+
+
+     <!-- Sign Up Modal -->
+     <div id="modal-signup" class="modal">
+        <div class="modal-content">
+            <h4>Sign Up</h4>
+            <form id="signup-form">
+                <div class="input-field">
+                    <input type="email" id="signup-email" required>
+                    <label for="signup-email">Email Address</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="signup-password">
+                    <label for="signup-password">Choose Password</label>
+                </div>   
+                <button class="btn green darken-2 z-depth-0">Login</button>     
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="modal-login" class="modal">
+        <div class="modal-content">
+            <h4>Login</h4>
+            <form id="login-form">
+                <div>
+                    <input type="email" id="login-email" required>
+                    <label for="login-email">Your Email</label>
+                </div>
+                <div>
+                    <input type="password" id="login-password" required>
+                    <label for="login-password">Your Password</label>
+                </div>
+                <button class="btn green darken-2 z-depth-0">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    <!-- Account Modal -->
+    <div id="modal-account" class="modal">
+        <div class="modal-content center-align">
+            <h4>Account Details</h4>
+            <div class="account-details"></div>
+        </div>
+    </div>
+
+
+
+
+    <script src="/public/js/ui.js"></script>
+    <script src="/public/js/app.js"></script>
+   <!-- <script type="module" src="/public/js/db.js"></script>  -->
+   <script type="module" src="/public/js/auth.js"></script>
+
+   
+   
+</body>
+</html>

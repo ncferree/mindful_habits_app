@@ -1,0 +1,33 @@
+{
+    "name": "Mindful Habits",
+    "short_name": "Mindful Habits",
+    "description": "Build and track mindful habits to become a more mindful version of you!",
+    "start_url": "/public/index.html",
+    "scope": ".",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "background_color": "#084028",
+    "theme_color": "#b4cab4",
+    "dir": "ltr",
+    "lang": "en-US",
+    "icons": [
+        {
+            "src": "/public/img/lotus.svg",
+            "type": "image/svg",
+            "sizes": "260x260"
+        },
+        {
+            "src": "/public/img/lotus120x120.svg",
+            "type": "image/svg",
+            "sizes": "120x120"
+        },
+        {
+            "src": "/public/img/lotus512x512.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any maskable"
+
+        }
+               
+    ]
+}
