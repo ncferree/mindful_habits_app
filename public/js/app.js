@@ -6,9 +6,9 @@ if ('serviceWorker' in navigator) {
     //then register the service worker
     navigator.serviceWorker
     .register('/public/sw.js')
-    .then((reg) => {
+    .then(function(registration) {
         //display a success message
-        console.log(`Service Worker Registration (Scope: ${reg.scope})`);
+        console.log(`Service Worker Registration (Scope: ${registration.scope})`);
     })
     .catch((error) => {
         //display an error message

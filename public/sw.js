@@ -1,5 +1,5 @@
-const staticCache = 'Static-v14'
-const dynamicCache = 'Dynamic-cache-v14'
+const staticCache = 'Static-v18'
+const dynamicCache = 'Dynamic-cache-v18'
 
 const assets = [
     '/',
@@ -8,12 +8,23 @@ const assets = [
     '/public/js/ui.js',
     '/public/js/materialize.min.js',
     '/public/js/db.js',
+    '/public/js/auth.js',
+    '/public/js/affirmation_db.js',
+    '/public/js/affirmation_ui.js',
+    '/public/js/dailyGratitude_db.js',
+    '/public/js/dailyGratitude_ui.js',
+    '/public/js/dailyRoutine_db.js',
+    '/public/js/dailyRoutine_ui.js',
+    '/public/js/intention_db.js',
+    '/public/js/intention_ui.js',
     '/public/css/app.css',
     '/public/css/materialize.min.css',
     '/public/img/lotus.svg',
-    '/public/img/lotus 120x120.svg',
+    '/public/img/lotus192x192 .png',
+    '/public/img/lotus512x512.png',
     'https://fonts.googleapis.com/icon?family=Material+Icons',
     '/public/pages/fallback.html',
+   
 ];
 
 //Cache size limit
@@ -68,7 +79,7 @@ self.addEventListener("fetch", function(event){
             fetch(event.request).then(fetchRes => {
             return caches.open(dynamicCache).then((cache) => {
                 cache.put(event.request.url, fetchRes.clone());
-                limitCacheSize(dynamicCache, 3);
+                limitCacheSize(dynamicCache, 50);
                 return fetchRes;
             });
         })

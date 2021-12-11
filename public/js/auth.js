@@ -17,34 +17,34 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
-//listen for auth status change
-onAuthStateChanged(auth, (user) => {
-    if(user){
-        console.log("User logged in: ", user.email);
-        getAffirmations(db).then((snapshot) => {
-            setupAffirmations(snapshot);
-        });
-        setUpUI(user);
-        const form = document.querySelector("form");
-        form.addEventListener("submit", (event) => {
-            event.preventDefault();
-            const form = document.querySelector("form");
-            form.addEventListener("submit", (event) => {
-            event.preventDefault();
+// //listen for auth status change
+// onAuthStateChanged(auth, (user) => {
+//     if(user){
+//         console.log("User logged in: ", user.email);
+//         getDailyAffirmations(db).then((snapshot) => {
+//             setupDailyAffirmations(snapshot);
+//         });
+//         setUpUI(user);
+//         const form = document.querySelector("form");
+//         form.addEventListener("submit", (event) => {
+//             event.preventDefault();
+//             const form = document.querySelector("form");
+//             form.addEventListener("submit", (event) => {
+//             event.preventDefault();
 
-            addDoc(collection(db, "affirmations"), {
-            affirmation: form.affirmation.value,
-            }).catch((error) => console.log(error));
-            form.affirmation.value = "";
-            });
+//             // addDoc(collection(db, "dailyAffirmations"), {
+//             // dailyAffirmation: form.dailyAffirmation.value,
+//             // }).catch((error) => console.log(error));
+//             // form.affirmation.value/ = "";
+//             });
 
-        })
-    } else {
-        console.log("User logged out");
-        setUpUI();
-        setupAffirmations([]);
-    }
-})
+//         })
+//     } else {
+//         console.log("User logged out");
+//         setUpUI();
+//         setupDailyAffirmations([]);
+//     }
+// })
 
 //signup
 const signupForm = document.querySelector("#signup-form");

@@ -3,6 +3,7 @@
     "short_name": "Mindful Habits",
     "description": "Build and track mindful habits to become a more mindful version of you!",
     "start_url": "/public/index.html",
+    "id":"/public/index.html",
     "scope": ".",
     "display": "standalone",
     "orientation": "portrait-primary",

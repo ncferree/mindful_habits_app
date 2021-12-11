@@ -2,9 +2,8 @@
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
-  import { getFirestore, enableIndexedDbPersistence } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";
-  import { collection, query, orderBy, startAfter, limit, getDocs } from "firebase/firestore";  
-
+  import { getFirestore, collection, query, orderBy, startAfter, limit, getDocs, onSnapshot, enableIndexedDbPersistence } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";
+  import { getAuth,  onAuthStateChanged  } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -25,6 +24,7 @@
   const analytics = getAnalytics(app);
   //access to db
   const db = getFirestore(app);
+  const auth = getAuth(app);
 
 enableIndexedDbPersistence(db)
   .catch((err) => {
@@ -38,73 +38,53 @@ enableIndexedDbPersistence(db)
           console.log('Persistence is not valid');
       }
   });
-
   async function getDailyAffirmations(db) {
     const dailyAffirmationsCol = collection(db, "dailyAffirmations");
     const dailyAffirmationSnapshot = await getDocs(dailyAffirmationsCol);
     const dailyAffirmationList = dailyAffirmationSnapshot.docs.map((doc) => doc);
-      return dailyAffirmationList;
+    return dailyAffirmationList;
   }
+  //listen for auth status change
+onAuthStateChanged(auth, (user) => {
+  if(user){
+      console.log("User logged in: ", user.email);
+      setUpUI(user);  
+  } else {
+      console.log("User logged out");
+      setUpUI();
+  }
+})
 
-  const unsubtwo = onSnapshot(collection(db, "dailyAffirmations"),(doc) => {
-           renderDailyAffirmation(change.doc.data(), change.doc.id);
-  });
+  // const unsubtwo = onSnapshot(collection(db, "dailyAffirmations"),(doc) => {
+  //   setupDailyAffirmation(change.doc.data(), change.doc.id);
+  // });
   
-  // Query the first page of docs
-const first = query(collection(db, "dailyAffirmations"), orderBy("id"), limit(1));
-const documentSnapshots = await getDocs(first);
+//   // Query the first page of docs
+// const first = query(collection(db, "dailyAffirmations"), orderBy("id"), limit(1));
+// const documentSnapshots = await getDocs(first);
 
-// Get the last visible document
-const lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1];
-console.log("last", lastVisible);
+// // Get the last visible document
+// const lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1];
+// console.log("last", lastVisible);
 
-// Construct a new query starting at this document,
-const next = query(collection(db, "dailyAffirmations"),
-    orderBy("id"),
-    startAfter(lastVisible),
-    limit(2));
+// // Construct a new query starting at this document,
+// const next = query(collection(db, "dailyAffirmations"),
+//     orderBy("id"),
+//     startAfter(lastVisible),
+//     limit(1));
 
   
   
-     //add new dailyAffirmation to My Affirmation page
-     const addAffirmations = document.querySelector(".add-to-my-affirmations");
-     addAffirmations.addEventListener("submit", (event) => {
-       event.preventDefault();
+    //  //add new dailyAffirmation to My Affirmation page
+    //  const addAffirmations = document.querySelector(".add-to-my-affirmations");
+    //  addAffirmations.addEventListener("submit", (event) => {
+    //    event.preventDefault();
      
-     addDoc(collection(db, "dailyAffirmations"), {
-       dailyAffirmation: addAffirmations.dailyAffirmation.value,
-     }).catch((error) => console.log(error));
-     addAffirmations.dailyAffirmation.value = "";
-     });
+    //  addDoc(collection(db, "dailyAffirmations"), {
+    //    dailyAffirmation: addAffirmations.dailyAffirmation.value,
+    //  }).catch((error) => console.log(error));
+    //  addAffirmations.dailyAffirmation.value = "";
+    //  });
 
 
 
-  
-// //listen for auth status change
-// onAuthStateChanged(auth, (user) => {
-//   if(user){
-//       console.log("User logged in: ", user.email);
-//       getAffirmations(db).then((snapshot) => {
-//           setupAffirmations(snapshot);
-//       });
-//       setUpUI(user);
-//       const form = document.querySelector("form");
-//       form.addEventListener("submit", (event) => {
-//           event.preventDefault();
-//           const form = document.querySelector("form");
-//           form.addEventListener("submit", (event) => {
-//           event.preventDefault();
-
-//           addDoc(collection(db, "affirmations"), {
-//           affirmation: form.affirmation.value,
-//           }).catch((error) => console.log(error));
-//           form.affirmation.value = "";
-//           });
-
-//       })
-//   } else {
-//       console.log("User logged out");
-//       setUpUI();
-//       setupAffirmations([]);
-//   }
-// })
